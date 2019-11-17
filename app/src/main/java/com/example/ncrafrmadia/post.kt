@@ -11,6 +11,6 @@ class Post(
 )
     fun countMe (view: View) {
         // Get the value of the text view.
-        val countString = post.text.toString()
-    }
+    //    val countString = post.text.toString()
+
 }

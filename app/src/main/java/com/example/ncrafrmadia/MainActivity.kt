@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var countLike: Int = 0
+    private var countLike: Int = 0     // счетчики
     private var countChat: Int = 0
     private var countShare: Int = 0
 

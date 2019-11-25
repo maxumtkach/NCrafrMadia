@@ -7,7 +7,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,23 +20,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val post = Post(
-            "Netology", "First post in our network!",
-            "20 august  2019", false
+        val post = Post("Netology","adress",
+            Pair(0.00,0.00),"First post in our network!","20 august  2019",
+            false
         )
 
         post_text.text = post.content
         netology_text.text = post.author
         data_text.text = post.created
+        address_text.text=post.address
+        latitude_text.text=post.location.first.toString()
+        longitude_text.text=post.location.second.toString()
     }
-
+ //   class Location(val lat:Double,val lon:Double)
     fun locationByMe(view: View) {
         val intent = Intent().apply {
-            //  data = Uri.parse("geo:$lat,$lng")
+            val lat = ""
+            val lon = ""
+            data = Uri.parse("geo:$lat,$lon")
             action = Intent.ACTION_VIEW
             putExtra(
                 Intent.EXTRA_TEXT, """
-                ${post_text.text}(${netology_text.text})${data_text.text}
+                (${latitude_text.text})${longitude_text.text}
             """.trimIndent()
             )
             type = "text/plain"

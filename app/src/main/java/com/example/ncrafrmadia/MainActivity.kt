@@ -20,19 +20,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val post = Post("Netology","adress",
-            Pair(0.00,0.00),"First post in our network!","20 august  2019",
+        val post = Post(
+            "Netology", "adress",
+            Pair(0.00, 0.00), "First post in our network!", "20 august  2019",
             false
         )
 
         post_text.text = post.content
         netology_text.text = post.author
         data_text.text = post.created
-        address_text.text=post.address
-        latitude_text.text=post.location.first.toString()
-        longitude_text.text=post.location.second.toString()
+        address_text.text = post.address
+        latitude_text.text = post.location.first.toString()
+        longitude_text.text = post.location.second.toString()
     }
- //   class Location(val lat:Double,val lon:Double)
+
     fun locationByMe(view: View) {
         val intent = Intent().apply {
             val lat = ""

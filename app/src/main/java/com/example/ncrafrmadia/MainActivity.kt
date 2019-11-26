@@ -7,14 +7,16 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private var countLike: Int = 0     // счетчики
     private var countChat: Int = 0
     private var countShare: Int = 0
-
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,16 +24,41 @@ class MainActivity : AppCompatActivity() {
 
         val post = Post(
             "Netology", "adress",
-            Pair(0.00, 0.00), "First post in our network!", "20 august  2019",
+            Coordinates(0.00, 0.00), "First post in our network!", "20 august  2019",
             false
         )
 
+        btn_image_like.setOnClickListener {
+
+            if (countLike != 0) {
+
+                countLike--
+                like_text.text = countLike.toString()
+
+                btn_image_like.setImageResource(R.drawable.ic_favorite_inactive_24dp)
+                toColorDisactiv()
+                address_text.text = ""
+                latitude_text.text = ""
+                longitude_text.text = ""
+            } else {
+
+                btn_image_like.setImageResource(R.drawable.ic_favorite_red_24dp)
+                countLike++
+                like_text.text = countLike.toString()
+                toColorActiv()
+
+                address_text.text = post.address
+                latitude_text.text = post.location.first.toString()
+                longitude_text.text = post.location.second.toString()
+            }
+        }
+        toInfo(post)
+    }
+
+    fun toInfo(post: Post) {
+        data_text.text = post.created
         post_text.text = post.content
         netology_text.text = post.author
-        data_text.text = post.created
-        address_text.text = post.address
-        latitude_text.text = post.location.first.toString()
-        longitude_text.text = post.location.second.toString()
     }
 
     fun locationByMe(view: View) {
@@ -48,9 +75,6 @@ class MainActivity : AppCompatActivity() {
             type = "text/plain"
         }
         startActivity(intent)
-
-        //val myToast = Toast.makeText(this, "Hello Toast!", Toast.LENGTH_SHORT)
-        // myToast.show()
     }
 
     private fun toColorDisactiv() {
@@ -62,25 +86,6 @@ class MainActivity : AppCompatActivity() {
     private fun toColorActiv() {
         if (countLike != 0 || countChat != 0 || countShare != 0) {
             like_text.setTextColor(Color.rgb(255, 0, 0))
-        }
-    }
-
-    fun likedByMe(view: View) {     // функция лайк дизлайк
-
-        if (countLike != 0) {
-
-            countLike--
-            like_text.text = countLike.toString()
-
-            btn_image_like.setImageResource(R.drawable.ic_favorite_inactive_24dp)
-            toColorDisactiv()
-        } else {
-
-
-            btn_image_like.setImageResource(R.drawable.ic_favorite_red_24dp)
-            countLike++
-            like_text.text = countLike.toString()
-            toColorActiv()
         }
     }
 

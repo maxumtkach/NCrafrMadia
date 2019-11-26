@@ -12,6 +12,7 @@
         android:id="@+id/constraintLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constr"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -88,7 +89,6 @@
 
         <TextView android:id="@+id/latitude_text"
                   tools:text="lat"
-
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   app:layout_constraintEnd_toStartOf="@id/longitude_text"
@@ -101,7 +101,6 @@
 
         <TextView android:id="@+id/longitude_text"
                   tools:text="lon"
-
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   app:layout_constraintStart_toEndOf="@id/latitude_text"
@@ -113,19 +112,17 @@
 
         <TextView android:id="@+id/address_text"
                   tools:text="address text"
-
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   app:layout_constraintStart_toEndOf="@id/post_text"
                   app:layout_constraintBottom_toTopOf="@id/btn_image_chat"
-                  app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="24dp"/>
+                  app:layout_constraintEnd_toEndOf="parent"
+                  android:layout_marginBottom="24dp"/>
 
         <ImageButton
                 android:src="@drawable/ic_favorite_inactive_24dp"
                 android:background="@android:color/transparent"
                 android:id="@+id/btn_image_like"
-                android:onClick="likedByMe"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/post_text"
